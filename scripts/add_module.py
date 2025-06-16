@@ -1,3 +1,5 @@
+"This a module for adding two numbers with a main function to demonstrate its usage." 
+
 def add(x: int, y: int) -> int:
     """
     Add two numbers.
@@ -10,11 +12,13 @@ def add(x: int, y: int) -> int:
 
 
 def main() -> None:
-    """
-    Main function to demonstrate the add function.
-    """
+    '''
+        Main function to demonstrate the add function.
+    '''
+
     result : int = add(5, 3)
     print(f"The sum of 5 and 3 is: {result}")
+
 
 if __name__ == "__main__":
     main()
