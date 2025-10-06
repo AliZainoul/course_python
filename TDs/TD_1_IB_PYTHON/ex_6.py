@@ -9,7 +9,7 @@ def scientific_conversion():
         integer_part = int(num)
         fractional_part = abs(num - integer_part)
         print(f"Partie entière : {integer_part}")
-        print(f"Partie fractionnaire : {fractional_part:.3f}")
+        print(f"Partie fractionnaire : {fractional_part:.10f}")
     except ValueError:
         print("Entrée invalide.")
 
