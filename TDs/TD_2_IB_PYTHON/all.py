@@ -8,10 +8,9 @@ written in English, using senior-level practices (type hints, separation of conc
 explicit naming, clear docstrings, and robustness).
 """
 
-from typing import Any, Callable, Iterator
+from typing import Iterator
 import copy
 import string
-import dis
 
 # === Exercise 1 ===
 def compute_stats(a: float = 1.0, b: float = 2.0, c: float = 3.0) -> tuple[float, float, float]:
@@ -23,7 +22,7 @@ def compute_stats(a: float = 1.0, b: float = 2.0, c: float = 3.0) -> tuple[float
 
 
 # === Exercise 2 ===
-def analyze_values(*args: int, sort: bool = False) -> tuple[int, int]:
+def analyze_values(*args: float, sort: bool = False) -> tuple[float, float]:
     """Return the minimum and maximum of any number of integer arguments."""
     if not args:
         raise ValueError("At least one integer is required.")
@@ -179,7 +178,9 @@ def main() -> None:
     print("[EX1] compute_stats:", compute_stats())
 
     print("-"*32 + " [EX2] analyze_values " + "-"*32+ '\n')
-    print("[EX2] analyze_values:", analyze_values(3, 7, 1, 8, sort=True))
+    print("[EX2] analyze_values:", analyze_values(
+        *(float(element) for element in input("Pleaser enter your numbers (sep = space): ").split()), sort=True)
+    )
 
     print("-"*32 + " [EX3] filter_long_words " + "-"*32+ '\n')
     print("[EX3] filter_long_words:", filter_long_words(["sun", "python", "developer"]))
