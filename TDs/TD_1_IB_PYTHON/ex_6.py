@@ -1,17 +1,40 @@
-def scientific_conversion():
+def scientific_conversion() -> None:
     """
-    Convertit un réel en notation scientifique (3 décimales),
-    puis affiche la partie entière et fractionnaire.
+    Convert a real number into scientific notation (3 decimal places),
+    then display its integer and fractional parts.
+
+    The function:
+        - Prompts the user to input a real number.
+        - Displays the number in scientific notation using 3 decimal places.
+        - Separates and displays the integer and fractional parts of the number.
+        - Handles invalid inputs gracefully.
+
+    Example:
+        Input:
+            1234.56789
+        Output:
+            Scientific notation: 1.235e+03
+            Integer part: 1234
+            Fractional part: 0.5678900000
+
+    Returns:
+        None
     """
     try:
-        num = float(input("Entrez un nombre réel : "))
-        print(f"Notation scientifique : {num:.3e}")
+        num = float(input("Enter a real number: "))
+
+        print(f"Scientific notation: {num:.3e}")
+
         integer_part = int(num)
         fractional_part = abs(num - integer_part)
-        print(f"Partie entière : {integer_part}")
-        print(f"Partie fractionnaire : {fractional_part:.10f}")
+
+        print(f"Integer part: {integer_part}")
+        print(f"Fractional part: {fractional_part:.10f}")
+
     except ValueError:
-        print("Entrée invalide.")
+        print("Error: please enter a valid numeric value.")
+    except KeyboardInterrupt:
+        print("\nOperation canceled by user.")
 
 
 if __name__ == "__main__":

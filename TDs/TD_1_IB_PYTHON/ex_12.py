@@ -1,18 +1,36 @@
-def display_people_table():
+def display_people_table() -> None:
     """
-    Affiche un tableau aligné des personnes avec :
-    - nom, âge, métier
+    Displays a neatly aligned table of people with their:
+      - Name
+      - Age
+      - Occupation
+
+    Example:
+        Name           Age  Occupation
+        ----------------------------------------
+        Alice          30   Engineer
+        Bob            25   Developer
+        Chloe          35   Designer
+
+    Returns:
+        None
     """
     people = [
-        ("Alice", 30, "Ingénieure"),
-        ("Bob", 25, "Développeur"),
-        ("Chloé", 35, "Designer"),
+        ("Alice", 30, "Engineer"),
+        ("Bob", 25, "Developer"),
+        ("Chloe", 35, "Designer"),
     ]
 
-    print(f"{'Nom':<15}{'Âge':<5}{'Métier':<20}")
-    print("-" * 40)
+    WIDTH_NAME = 15
+    WIDTH_AGE = 5
+    WIDTH_JOB = 20
+
+    # Use nested braces {} for the variable in format spec
+    print(f"{'Name':<{WIDTH_NAME}}{'Age':<{WIDTH_AGE}}{'Occupation':<{WIDTH_JOB}}")
+    print("-" * (WIDTH_NAME + WIDTH_AGE + WIDTH_JOB))
+
     for name, age, job in people:
-        print(f"{name:<15}{age:<5}{job:<20}")
+        print(f"{name:<{WIDTH_NAME}}{age:<{WIDTH_AGE}}{job:<{WIDTH_JOB}}")
 
 
 if __name__ == "__main__":

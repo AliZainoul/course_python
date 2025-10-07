@@ -1,45 +1,57 @@
-def compare_values():
+def compare_values() -> None:
     """
-    Interactive function to compare two user-input values and analyze their properties.
+    Interactively compare two user-input values and analyze their properties.
 
     The function performs three main checks:
-    1. Type equality: Verifies if both inputs are of the same Python type
-    2. Numeric validation: Checks if both inputs can be converted to valid numbers
-    3. Value comparison: If both inputs are numeric, compares them using '>'
+        1. **Type equality:** Verifies if both inputs are of the same Python type.
+        2. **Numeric validation:** Checks if both inputs can be converted to valid numbers.
+        3. **Value comparison:** If both inputs are numeric, compares them using the '>' operator.
 
     Notes:
-        - Numeric validation supports both integers (e.g., "123") and decimals (e.g., "12.34")
-        - Non-numeric inputs will be detected and comparison will be skipped
-        - The function handles user input directly and displays results to console
+        - Numeric validation supports both integers (e.g., "123") and decimals (e.g., "12.34").
+        - Non-numeric inputs are detected and skipped from comparison.
+        - The function handles user input directly and prints results to the console.
 
     Returns:
         None
     """
-    # Get input values from user
-    val1 = input("Entrez la première valeur : ")
-    val2 = input("Entrez la deuxième valeur : ")
+    # Prompt the user for two values
+    val1 = input("Enter the first value: ").strip()
+    val2 = input("Enter the second value: ").strip()
 
-    # Check if both inputs are of the same type (they will be strings at this point)
-    same_type = type(val1) == type(val2)
+    # Type comparison (both are strings from input, but this line illustrates type checking)
+    same_type = isinstance(val1, type(val2)) # Always True since both are str
 
-    # We should use isinstance(...)
+    # Check if both values are numeric
+    def is_numeric(value: str) -> bool:
+        """Check if a string represents a valid integer or float number."""
+        if value.count('.') > 1:  # More than one decimal point -> invalid
+            return False
+        return value.replace('.', '', 1).isdigit()
 
-    # Validate if both inputs are numeric by checking if they match the pattern of a number:
-    # - Removes one decimal point (if exists) using replace('.', '', 1)
-    # - Checks if remaining characters are all digits using isdigit()
-    both_numeric = val1.replace('.', '', 1).isdigit() and val2.replace('.', '', 1).isdigit()
-    print(val1.replace('.', '', 1), val2.replace('.', '', 1))
+    both_numeric = is_numeric(val1) and is_numeric(val2)
 
-    # Display results of type comparison and numeric validation
-    print(f"Types identiques : {same_type}")
-    print(f"Numériques : {both_numeric}")
+    # Display results of type and numeric checks
+    print(f"Same type: {same_type}")
+    print(f"Both numeric: {both_numeric}")
 
-    # If both values are numeric, convert them to floats and compare
+    # Compare numeric values if both are valid numbers
     if both_numeric:
         n1, n2 = float(val1), float(val2)
-        print(f"{n1} > {n2} : {n1 > n2}")
+        bigger = max(n1, n2)
+        smaller = min(n1, n2)
+
+        # Single-line conditional expression (ternary)
+        result = (
+            f"bigger: {bigger} >= smaller: {smaller}"
+            if bigger != smaller
+            else f"bigger: {bigger} == smaller: {smaller}"
+        )
+
+        print(result)
     else:
-        print("Comparaison impossible (valeurs non numériques).")
+        print("Comparison not possible (non-numeric values).")
+
 
 
 if __name__ == "__main__":

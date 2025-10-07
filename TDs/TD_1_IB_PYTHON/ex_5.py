@@ -1,29 +1,64 @@
-import cmath
 import math
+import cmath
 
-def numeric_operations():
+
+def numeric_operations() -> None:
     """
-    Demande deux nombres et affiche :
-    - Quotient
-    - Reste
-    - Puissance
-    - Racine carrée de la somme
-    - Complexe formé
+    Prompt the user for two numeric values and display the results of various operations.
+
+    The function performs and displays:
+        - The quotient (a / b)
+        - The remainder (a % b)
+        - The power (a ** b)
+        - The square root of their sum (√(a + b))
+        - The complex number formed by combining a and b (a + bj)
+
+    Notes:
+        - Uses both `math` and `cmath` modules for handling real and complex numbers.
+        - Handles division by zero and invalid numeric input gracefully.
+
+    Example:
+        Input:
+            a = 4
+            b = 2
+        Output:
+            Quotient: 2.00
+            Remainder: 0.00
+            Power: 16.00
+            Square root of the sum: 2.45
+            Complex number: (4+2j)
+
+    Returns:
+        None
     """
     try:
-        a = float(input("Nombre 1 : "))
-        b = float(input("Nombre 2 : "))
+        a = float(input("Enter the first number: "))
+        b = float(input("Enter the second number: "))
 
-        print(f"Quotient : {a / b:.2f}")
-        print(f"Reste : {a % b:.2f}")
-        print(f"Puissance : {a ** b:.2f}")
-        print(f"Racine carrée de la somme : {math.sqrt(a + b):.2f}")
-        print(f"Complexe : {complex(a, b)}")
+        # Perform numeric operations
+        quotient = a / b
+        remainder = a % b
+        power = a ** b
+        square_root_sum = (
+            math.sqrt(a + b)
+            if a + b >= 0
+            else cmath.sqrt(a + b)  # Handle complex roots gracefully
+        )
+        complex_number = complex(a, b)
+
+        # Display results
+        print(f"Quotient: {quotient:.2f}")
+        print(f"Remainder: {remainder:.2f}")
+        print(f"Power: {power:.2f}")
+        print(f"Square root of the sum: {square_root_sum:.2f}")
+        print(f"Complex number: {complex_number}")
 
     except ZeroDivisionError:
-        print("Division par zéro interdite.")
+        print("Error: division by zero is not allowed.")
     except ValueError:
-        print("Entrée invalide.")
+        print("Error: please enter valid numeric values.")
+    except KeyboardInterrupt:
+        print("\nOperation canceled by user.")
 
 
 if __name__ == "__main__":

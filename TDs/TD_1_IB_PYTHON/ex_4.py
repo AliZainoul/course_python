@@ -1,24 +1,52 @@
-def test_bounds_with_logical_operators():
+def test_strict_bounds() -> None:
     """
-    Vérifie si une valeur est strictement comprise entre deux bornes,
-    en utilisant explicitement les opérateurs logiques : and, or, not.
+    Prompt the user for a numeric value and two bounds, then check
+    whether the value is strictly between the bounds (excluding the bounds)
+    using explicit logical operators: and, or, not.
+
+    The function:
+        - Ensures the lower bound is less than the upper bound.
+        - Uses a logical combination of `and` and `not` to exclude the bounds.
+        - Displays the result to the user.
+
+    Example:
+        Input:
+            Value: 5
+            Lower bound: 2
+            Upper bound: 8
+        Output:
+            True
+
+        Input:
+            Value: 2
+            Lower bound: 2
+            Upper bound: 8
+        Output:
+            False
+
+    Returns:
+        None
     """
     try:
-        value = float(input("Entrez une valeur : "))
-        lower = float(input("Entrez la borne inférieure : "))
-        upper = float(input("Entrez la borne supérieure : "))
+        # Prompt for input
+        value = float(input("Enter a value: "))
+        lower = float(input("Enter the lower bound: "))
+        upper = float(input("Enter the upper bound: "))
 
-        # Test logique : entre les bornes mais différent des bornes
-        is_between = (value > lower) and (value < upper)
-        is_not_equal_to_bounds = not (value == lower or value == upper)
+        # Validate bounds
+        if lower >= upper:
+            raise ValueError("Lower bound must be strictly less than upper bound.")
 
-        result = is_between and is_not_equal_to_bounds
+        # Logical test: value strictly between bounds using and, or, not
+        result = (value > lower) and (value < upper) and not (value == lower or value == upper)
 
-        print(f"La valeur est strictement entre les bornes (exclues) : {result}")
+        print(f"Is the {value=} strictly between the bounds {lower=} and {upper=} (excluded)? {result}")
 
-    except ValueError:
-        print("Erreur : veuillez entrer uniquement des valeurs numériques valides.")
+    except ValueError as ve:
+        print(f"Error: {ve}")
+    except KeyboardInterrupt:
+        print("\nOperation canceled by user.")
 
 
 if __name__ == "__main__":
-    test_bounds_with_logical_operators()
+    test_strict_bounds()
