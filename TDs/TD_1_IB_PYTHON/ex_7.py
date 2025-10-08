@@ -1,6 +1,5 @@
 import re
 
-
 def quote_analysis() -> None:
     """
     Display a multi-line quote (as a raw string), then analyze it by:
@@ -38,7 +37,8 @@ def quote_analysis() -> None:
     print("Quote:\n", quote)
 
     # Normalize text: lowercase and remove punctuation for clean analysis
-    words = re.findall(r"\b\w+\b", quote.lower())
+    # words = re.findall(r"\b\w+\b", quote.lower())
+    words = quote.split()
     word_count = len(words)
 
     search = input("Enter a word to search for: ").lower()

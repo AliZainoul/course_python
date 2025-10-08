@@ -21,6 +21,8 @@ def convert_temperature() -> None:
     except KeyboardInterrupt:
         print("\nConversion canceled by user.")
 
+def main() -> None:
+    convert_temperature()
 
 if __name__ == "__main__":
-    convert_temperature()
+    main()

@@ -116,7 +116,9 @@ def demonstrate_list_copy() -> None:
 # === Exercise 10 ===
 def reversed_even_integers(n: int = 10) -> list[int]:
     """Return the first n even integers in reversed order."""
-    return list(reversed(range(0, n * 2, 2)))
+    # return list(reversed(range(0, n * 2, 2)))
+    return list(sorted(range(0, n * 2, 2), reverse=True))
+
 
 
 # === Exercise 11 ===

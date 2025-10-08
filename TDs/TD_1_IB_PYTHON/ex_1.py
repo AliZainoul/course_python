@@ -13,9 +13,9 @@ def display_user_info() -> None:
         None
     """
     # Get user input
-    first_name = input("Enter your first name: ").strip().capitalize()
-    last_name = input("Enter your last name: ").strip().upper()
-    birth_year = input("Enter your year of birth: ").strip()
+    first_name : str = input("Enter your first name: ").strip().capitalize()
+    last_name : str = input("Enter your last name: ").strip().upper()
+    birth_year : str = input("Enter your year of birth: ").strip()
 
     # Validate input
     if not birth_year.isdigit():
@@ -23,7 +23,7 @@ def display_user_info() -> None:
         return
 
     # Build the message
-    message = f"{first_name} {last_name}, born in {birth_year}"
+    message : str = f"{first_name} {last_name}, born in {birth_year}"
 
     # Highlight using ANSI escape codes:
     # \033[42m → Green background
@@ -34,5 +34,8 @@ def display_user_info() -> None:
     print("\033[42m\033[30m" + centered_message + "\033[0m")
 
 
-if __name__ == "__main__":
+def main() -> None:
     display_user_info()
+    
+if __name__ == "__main__":
+    main()

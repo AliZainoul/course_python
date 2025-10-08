@@ -1,3 +1,5 @@
+# TO IGNORE
+
 def compare_values() -> None:
     """
     Interactively compare two user-input values and analyze their properties.
@@ -25,11 +27,17 @@ def compare_values() -> None:
     # Check if both values are numeric
     def is_numeric(value: str) -> bool:
         """Check if a string represents a valid integer or float number."""
-        if value.count('.') > 1:  # More than one decimal point -> invalid
-            return False
-        return value.replace('.', '', 1).isdigit()
+        return value.isnumeric()
+        # if value.count('.') > 1:  # More than one decimal point -> invalid
+        #     return False
+        # return value.replace('.', '', 1).isdigit()
 
+    # TEST negative numbers ! 
+
+    print(is_numeric(val1))
+    print(is_numeric(val2))
     both_numeric = is_numeric(val1) and is_numeric(val2)
+
 
     # Display results of type and numeric checks
     print(f"Same type: {same_type}")

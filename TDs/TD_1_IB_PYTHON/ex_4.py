@@ -34,12 +34,14 @@ def test_strict_bounds() -> None:
         upper = float(input("Enter the upper bound: "))
 
         # Validate bounds
-        if lower >= upper:
+        if lower > upper:
             raise ValueError("Lower bound must be strictly less than upper bound.")
 
         # Logical test: value strictly between bounds using and, or, not
         result = (value > lower) and (value < upper) and not (value == lower or value == upper)
+        # result = lower < value < upper
 
+        # print(f"Is the value = {value} strictly between the bounds lower = {lower} and upper = {upper} (excluded)? {result}")
         print(f"Is the {value=} strictly between the bounds {lower=} and {upper=} (excluded)? {result}")
 
     except ValueError as ve:
