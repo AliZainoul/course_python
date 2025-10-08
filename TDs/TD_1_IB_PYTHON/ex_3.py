@@ -19,51 +19,61 @@ def is_numeric(value: str) -> bool:
         return False
 
 # def is_numeric(value: str) -> bool:
-#     # DOES NOT WORK ON NEGATIVE NUMBERS !
-
 #     """
 #     Check whether a string represents a simple positive floating-point number.
 
-#     This function performs a lightweight validation *without* using `float()`.
-#     It only supports unsigned numeric values that contain digits and at most one
-#     decimal point (e.g., "3.14", "42", "0.5").
+#     This function validates unsigned numeric strings (integers or decimals)
+#     without using `float()` or regular expressions.
+
+#     It accepts:
+#         - Digits only (e.g., "42")
+#         - One decimal point (e.g., "3.14")
+#         - Optional leading or trailing dot (".5" or "5.")
 
 #     Limitations
 #     -----------
-#     - Does NOT support negative numbers (e.g., "-3.4" → False)
-#     - Does NOT support positive signs (e.g., "+5" → False)
-#     - Does NOT support scientific notation (e.g., "1e3" → False)
-#     - Does NOT detect invalid characters beyond digits and dots
+#     ❌ Does NOT support:
+#         - Negative numbers (e.g., "-3.4")
+#         - Positive signs (e.g., "+5")
+#         - Scientific notation (e.g., "1e3")
+#         - Spaces or commas (e.g., "3,14")
+#         - Unicode numerics (e.g., "Ⅷ", "²")
 
 #     Parameters
 #     ----------
 #     value : str
-#         The input string to be checked.
+#         The input string to check.
 
 #     Returns
 #     -------
 #     bool
-#         True if the string represents a simple numeric value, otherwise False.
+#         True if the string represents a valid simple float or integer, else False.
 
 #     Examples
 #     --------
 #     >>> is_simple_float("3.14")
 #     True
-#     >>> is_simple_float("12.3.4")
-#     False
-#     >>> is_simple_float("-3.4")
-#     False
 #     >>> is_simple_float("42")
 #     True
 #     >>> is_simple_float(".5")
 #     True
+#     >>> is_simple_float("-3.14")
+#     False
+#     >>> is_simple_float("1e3")
+#     False
 #     """
-#     # Reject if more than one decimal point exists
+#     if not value:  # empty string
+#         return False
+
+#     # Reject multiple decimal points
 #     if value.count('.') > 1:
 #         return False
 
-#     # Remove one decimal point (if any) and check that the rest are digits
-#     return value.replace('.', '', 1).isdigit()
+#     # Remove one decimal point (if any)
+#     stripped = value.replace('.', '', 1)
+
+#     # Check if remaining characters are digits
+#     return stripped.isdigit()
 
 def compare_values() -> None:
     """
