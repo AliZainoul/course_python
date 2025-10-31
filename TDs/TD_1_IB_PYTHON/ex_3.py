@@ -13,6 +13,8 @@ def is_numeric(value: str) -> bool:
         True if the string is a valid number, False otherwise.
     """
     try:
+        if not value:  # empty string
+            return False
         float(value)
         return True
     except (ValueError, TypeError):
